@@ -1,0 +1,91 @@
+name: gifcurry
+version: '3.0.0.0'
+summary: Your open source video to GIF maker.
+type: app
+description: |
+  Gifcurry is your open source video to GIF maker built with Haskell.
+  Import a video, trim, crop, add text, pick a font, set the size, and
+  save your creation as a GIF or a video.
+  Making GIFs with Gifcurry is fun so try it out!
+icon: snap/gui/gifcurry-icon.svg
+grade: stable
+confinement: strict
+
+apps:
+  gifcurry:
+    command: desktop-launch $SNAP/usr/bin/gifcurry_gui
+    desktop: ../snap/gui/gifcurry.desktop
+    plugs:
+      - network
+      - opengl
+      - desktop
+      - desktop-legacy
+      - unity7
+      - wayland
+      - x11
+      - alsa
+      - pulseaudio
+      - gsettings
+      - screen-inhibit-control
+      - optical-drive
+      - removable-media
+      - raw-usb
+      - mount-observe
+      - home
+
+parts:
+  gifcurry:
+    source: .
+    source-tag: nil
+    plugin: nil
+    build-packages:
+      - libtinfo-dev
+      - libpng12-dev
+      - libgstreamer1.0-dev
+      - libgstreamer-plugins-good1.0-dev
+      - libgstreamer-plugins-base1.0-dev
+      - libgstreamer-plugins-bad1.0-dev
+      - libgirepository1.0-dev
+    stage-packages:
+      - zlib1g
+      - libpng12-0
+      - libgirepository-1.0-1
+      - libgstreamer1.0-0
+      - libgstreamer-plugins-base1.0-0
+      - libgstreamer-plugins-good1.0-0
+      - libgstreamer-plugins-bad1.0-0
+      - imagemagick
+      - gstreamer1.0-libav
+      - gstreamer1.0-plugins-base-apps
+      - gstreamer1.0-pulseaudio
+      - gstreamer1.0-plugins-base
+      - gstreamer1.0-plugins-good
+      - gstreamer1.0-plugins-bad
+    build-attributes:
+      - no-system-libraries
+    prepare: |
+    build: |
+      wget https://www.imagemagick.org/download/ImageMagick-6.9.9-38.tar.gz -O image-magick.tar.gz
+      tar -zxvf image-magick.tar.gz
+    install: |
+      cd ImageMagick-*
+      ./configure --prefix=$SNAPCRAFT_PART_INSTALL/usr --with-png
+      make
+      make install
+      cd ..
+
+      export LD_LIBRARY_PATH=''
+      export _GIFCURRY_DOWNLOAD_DIR=$SNAPCRAFT_PROJECT_NAME-linux-$SNAPCRAFT_PROJECT_VERSION
+      export _GIFCURRY_DOWNLOAD_FILE=$_GIFCURRY_DOWNLOAD_DIR.tar.gz
+
+      wget https://github.com/lettier/$SNAPCRAFT_PROJECT_NAME/releases/download/$SNAPCRAFT_PROJECT_VERSION/$_GIFCURRY_DOWNLOAD_FILE
+      tar -zxvf $_GIFCURRY_DOWNLOAD_FILE
+
+      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/
+      cd $_GIFCURRY_DOWNLOAD_DIR/
+      cp -RP . $SNAPCRAFT_PART_INSTALL/usr/
+    prime:
+      - -home/*
+    after:
+      - desktop-gtk3
+      - ffmpeg
