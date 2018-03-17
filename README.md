@@ -28,7 +28,7 @@ Is Gifcurry another Electron app? No way! Gifcurry is 100% #electronfree.
 No need to download more RAM, Gifcurry is light as a feather.
 Run it all day, run it all year—you'll never notice.
 
-I know what your thinkin', "Gifcurry is just FFMpeg and ImageMagick," but you'd be wrong.
+I know what your're thinkin', "Gifcurry is just FFMpeg and ImageMagick," but you'd be wrong.
 Gifcurry hides all the goofy details so you can concentrate on what matters—the almighty GIF.
 Making GIFs with Gifcurry is fun so try it out!
 
