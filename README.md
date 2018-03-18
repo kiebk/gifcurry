@@ -28,7 +28,7 @@ Is Gifcurry another Electron app? No way! Gifcurry is 100% #electronfree.
 No need to download more RAM, Gifcurry is light as a feather.
 Run it all day, run it all year—you'll never notice.
 
-I know what your're thinkin', "Gifcurry is just FFMpeg and ImageMagick," but you'd be wrong.
+I know what you're thinkin', "Gifcurry is just FFMpeg and ImageMagick," but you'd be wrong.
 Gifcurry hides all the goofy details so you can concentrate on what matters—the almighty GIF.
 Making GIFs with Gifcurry is fun so try it out!
 
@@ -39,6 +39,8 @@ Your template doesn't allow video in the hero image? Gifcurry.
 No GIF of your favorite movie scene? Gifcurry.  
 Need a custom animated emoji for Slack? Gifcurry.  
 Have an idea of the perfect GIF to close out that email? Gifcurry.  
+Your README needs a GIF? Gifcurry.  
+Video doesn't auto play on iOS? Gifcurry.  
 
 Gifcurry comes in handy for all sorts of scenarios.
 
@@ -111,7 +113,7 @@ gifcurry_cli \
          `'╙╙╙╙'``                                                             
 
 
-Gifcurry 3.0.0.0
+Gifcurry 3.0.0.1
 (C) 2016 David Lettier
 lettier.com
 
@@ -155,7 +157,7 @@ Bottom Crop: 25.000
 
 ## How do I get a copy of Gifcurry?
 
-Gifcurry works on Linux, Mac, and probably Windows (left me know).
+Gifcurry works on Linux, Mac, and most likely Windows.
 Make sure you have FFmpeg, GStreamer, ImageMagick, and GTK+ installed on your machine.
 To find the latest version of Gifcurry, head over to the
 [releases page](https://github.com/lettier/gifcurry/releases).
@@ -163,15 +165,15 @@ To find the latest version of Gifcurry, head over to the
 ### I use Linux.
 
 If you use Linux then the easiest way to grab a copy of Gifcurry is by downloading the
-[AppImage](https://github.com/lettier/gifcurry/releases/download/3.0.0.0/gifcurry-3.0.0.0-x86_64.AppImage).
+[AppImage](https://github.com/lettier/gifcurry/releases/download/3.0.0.1/gifcurry-3.0.0.1-x86_64.AppImage).
 After you download the
-[AppImage](https://github.com/lettier/gifcurry/releases/download/3.0.0.0/gifcurry-3.0.0.0-x86_64.AppImage),
+[AppImage](https://github.com/lettier/gifcurry/releases/download/3.0.0.1/gifcurry-3.0.0.1-x86_64.AppImage),
 right click on it, select permissions, and check the box near execute.
 With that out of the way—you're all set—just double click on the AppImage
 and the GUI will fire right up.
 
 You can also download and install the
-[AppImage](https://github.com/lettier/gifcurry/releases/download/3.0.0.0/gifcurry-3.0.0.0-x86_64.AppImage)
+[AppImage](https://github.com/lettier/gifcurry/releases/download/3.0.0.1/gifcurry-3.0.0.1-x86_64.AppImage)
 using the handy
 [AppImage install script](https://raw.githubusercontent.com/lettier/gifcurry/master/packaging/linux/app-image/gifcurry-app-image-install.sh)
 (right click and save link as).
@@ -179,7 +181,7 @@ Download the script, right click on it, select permissions, check the box near e
 You should now see Gifcurry listed alongside your other installed programs.
 
 If you want the CLI then download the
-[prebuilt version](https://github.com/lettier/gifcurry/releases/download/3.0.0.0/gifcurry-linux-3.0.0.0.tar.gz)
+[prebuilt version](https://github.com/lettier/gifcurry/releases/download/3.0.0.1/gifcurry-linux-3.0.0.1.tar.gz)
 for Linux, extract it, open up your terminal,
 `cd` to the bin folder, and then run `gifcurry_cli -?`.
 As an added bonus, inside the bin directory is the GUI version
@@ -191,17 +193,14 @@ If you'd rather install Gifcurry via pacman then copy the following into your te
 
 ```bash
 cd
-# Install git.
 sudo pacman -S git
-# Install Gifcurry.
-mkdir -p build_gifcurry
-cd build_gifcurry
+mkdir -p build-gifcurry
+cd build-gifcurry
 git clone https://aur.archlinux.org/gifcurry.git
 cd gifcurry
 makepkg -sic
-# Run Gifcurry CLI and GUI.
 cd
-rm -rf build_gifcurry
+rm -rf build-gifcurry
 gifcurry_cli -?
 gifcurry_gui
 ```
@@ -228,94 +227,15 @@ The
 [Gifcurry snap](https://snapcraft.io/gifcurry)
 only comes with the GUI.
 If you want the CLI, download the
-[prebuilt version](https://github.com/lettier/gifcurry/releases/download/3.0.0.0/gifcurry-linux-3.0.0.0.tar.gz)
+[prebuilt version](https://github.com/lettier/gifcurry/releases/download/3.0.0.1/gifcurry-linux-3.0.0.1.tar.gz)
 for Linux.
 
 ### I use Mac.
 
-If you use Mac then you'll need to find the terminal.
-Open Spotlight, type `Terminal`, and press enter.
-You should see a window open that has black text
-on a white background.
-
-With the terminal open, copy the following into the terminal to install Homebrew.
-
-```bash
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew update
-```
-
-After installing Homebrew, you'll need to install the right dependencies.
-
-```bash
-xcode-select --install
-brew install \
-  wget \
-  git \
-  libffi \
-  libsvg \
-  librsvg \
-  libav \
-  libogg \
-  libvorbis \
-  pkg-config \
-  gobject-introspection \
-  cairo \
-  gdk-pixbuf \
-  gsettings-desktop-schemas \
-  gtk+3 \
-  gtk-mac-integration \
-  gnome-icon-theme \
-  openh264 \
-  theora \
-  ffmpeg \
-  imagemagick \
-  ghostscript \
-  gstreamer \
-  gst-libav \
-  gst-plugins-base \
-  gst-plugins-good
-brew install --with-gtk+3 gst-plugins-bad
-wget -qO- https://get.haskellstack.org/ | sh -s - -f
-```
-
-The next step is to download the Gifcurry source with a program called `git`.
-After downloading the source, change directory (`cd`) into the Gifcurry folder.
-
-```bash
-git clone https://github.com/lettier/gifcurry.git
-cd gifcurry/
-```
-
-Now that you have the source, copy this into the terminal.
-It's scary lookin' but it is telling the program that builds
-Gifcurry where the `libffi` package configuration is.
-
-```bash
-LIBFFIPKGCONFIG=`find /usr/local/Cellar -path '*libffi*' -type d -name 'pkgconfig' 2>/dev/null | tr '\n' ':' | sed 's/:$//'`
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$LIBFFIPKGCONFIG
-```
-
-We're almost there.
-With the `stack` program, install the Haskell specific dependencies and build Gifcurry.
-
-```bash
-stack setup
-stack install alex happy
-stack install gtk2hs-buildtools
-stack install hsc2hs
-stack install
-```
-
-`stack` places the two Gifcurry programs into a special folder.
-Copy the following into the terminal to create two shortcuts on your desktop.
-
-```bash
-ln -s $HOME/.local/bin/gifcurry_cli $HOME/Desktop/gifcurry_cli
-ln -s $HOME/.local/bin/gifcurry_gui $HOME/Desktop/gifcurry_gui
-```
-
-You can now click on `gifcurry_gui` from your desktop or run `gifcurry_cli` from the terminal.
+Mac users can download and run the
+[Mac install script](https://raw.githubusercontent.com/lettier/gifcurry/master/packaging/mac/gifcurry-mac-install-script.command)
+(hold down control, click the link, and select "Save Link As...").
+After running the install script, a shortcut to both the Gifcurry GUI and CLI will be on your desktop.
 
 ### I'm a Haskell developer.
 
@@ -324,7 +244,7 @@ If you develop Haskell programs then the easiest way to build Gifcurry is with
 Copy the following into your terminal.
 
 ```bash
-git clone https://aur.archlinux.org/gifcurry.git
+git clone https://github.com/lettier/gifcurry.git
 cd gifcurry
 stack setup
 stack install alex happy
@@ -347,7 +267,7 @@ $HOME/.local/bin/gifcurry_gui
 ### To build Gifcurry.
 
 * [GObject Introspection](https://wiki.gnome.org/action/show/Projects/GObjectIntrospection)
-* [Haskell](https://docs.haskellstack.org/en/stable/README/)
+* [Haskell Stack](https://docs.haskellstack.org/en/stable/README/)
 
 ## What is the license?
 
@@ -355,5 +275,5 @@ For license information, see [LICENSE](LICENSE).
 
 ## Who wrote Gifcurry?
 
-_(C) 2016 David Lettier_  
+(C) 2016 David Lettier  
 [lettier.com](http://www.lettier.com/)
